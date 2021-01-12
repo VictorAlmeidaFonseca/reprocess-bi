@@ -12,12 +12,6 @@ module.exports = async (log) => {
         })      
 
     } catch (error) {
-        await logs({
-            uniquekey: "PANIC!",           
-            error,
-            success: false,
-        })  
+       console.log(error)
     }
 }
-
-

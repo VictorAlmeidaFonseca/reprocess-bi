@@ -6,7 +6,8 @@ const vtexParms = require('./config/vtex-params')
 const saveMongo = require('./functions/save-orders-at-mongo')
 
 const run = async () => {
- try {    
+ try {        
+    
     await logs({
         uniquekey: "START LIST!",  
     })           
