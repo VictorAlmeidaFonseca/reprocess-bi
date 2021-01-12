@@ -1,11 +1,16 @@
 version: '3'
 services:
   reprocessbi:
-    build: fonsecalmeida/reprocess-bi
+    build: 
+      context: https://github.com/VictorAlmeidaFonseca/reprocess-bi.git#main
+      args:
+        VTEX_TOKEN: UWDHKAFMALYNKRKIKHDNCOUACVKMWYJFCDNFFZSUFFLFYEVNRGVKHELFBCFPPSQBCTLHDFCLOJHXDPCXZXVPCYYYRIDCUCENOJCFTOJMDKWYWOCMAHPSXAZDUMPVBAQL
+        VTEX_KEY: vtexappkey-samsungbrshop-IZZZJF 
+        VTEX_ACCOUNTNAME: samsungbrshop 
     container_name: reprocessbi
     restart: always
     depends_on: 
-     - elasticsearch01
+     - elasticsearchlogs
     ports:
       - '3001:3001'
     environment:
@@ -16,16 +21,13 @@ services:
       MONGO_DB : BI
       MONGO_COLLECTION: expenses
       START_DATE: '01/01/2021'
-      END_DATE: '02/02/2021'
-      VTEX_TOKEN: UWDHKAFMALYNKRKIKHDNCOUACVKMWYJFCDNFFZSUFFLFYEVNRGVKHELFBCFPPSQBCTLHDFCLOJHXDPCXZXVPCYYYRIDCUCENOJCFTOJMDKWYWOCMAHPSXAZDUMPVBAQL
-      VTEX_KEY: vtexappkey-samsungbrshop-IZZZJF 
-      VTEX_ACCOUNTNAME: samsungbrshop
+      END_DATE: '02/02/2021'      
     networks:
       - log-elastic
       
-  elasticsearch01:
+  elasticsearchlogs:
     image: 'docker.elastic.co/elasticsearch/elasticsearch:7.9.2'
-    container_name: elasticsearch01
+    container_name: elasticsearchlogs
     ports:
       - '9200:9200'
       - '9300:9300'
@@ -34,9 +36,11 @@ services:
     networks:
       - log-elastic
       
-  kibana01:
+  kibanalogs:
     image: 'docker.elastic.co/kibana/kibana:7.9.2'
-    container_name: kibana01
+    container_name: kibanalogs
+    depends_on: 
+     - elasticsearchlogs
     ports:
       - '5601:5601'
     environment:
