@@ -8,8 +8,7 @@ const saveMongo = require('./functions/save-orders-at-mongo')
 const run = async () => {
  try {    
     await logs({
-        uniquekey: "START LIST!",
-        time: moment().format()
+        uniquekey: "START LIST!",  
     })           
         
      const orders = await allOrder(vtexParms)      
