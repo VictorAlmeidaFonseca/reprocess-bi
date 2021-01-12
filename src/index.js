@@ -1,9 +1,9 @@
 
-const logs = require('./src/logs')
-const allOrder = require('./src/all-orders')
+const logs = require('./services/logs')
+const allOrder = require('./functions/all-orders')
 const parallel = require('./utils/parallel')
 const vtexParms = require('./config/vtex-params')
-const saveMongo = require('./src/save-orders-at-mongo')
+const saveMongo = require('./functions/save-orders-at-mongo')
 
 const run = async () => {
  try {    
