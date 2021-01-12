@@ -44,6 +44,7 @@ async function saveMongo(order){
     } catch (error) {
       await log({
         uniquekey,
+        success: false,
         error
     })
     }

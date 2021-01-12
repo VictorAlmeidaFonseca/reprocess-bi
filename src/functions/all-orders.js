@@ -10,7 +10,8 @@ async function getOrderDetails(order) {
      
       await log({ 
           uniquekey: orderId, 
-          success: true, data: 
+          success: true, 
+          data: 
           orderDetails, 
       })
       

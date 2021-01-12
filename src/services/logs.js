@@ -15,6 +15,7 @@ module.exports = async (log) => {
         await logs({
             uniquekey: "PANIC!",           
             error,
+            success: false,
         })  
     }
 }
