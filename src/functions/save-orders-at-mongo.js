@@ -1,5 +1,6 @@
 const log = require('../services/logs')
 const { vtexOrderDetails } = require('./all-orders')
+const encrypt = require('./encrypt-fields')
 const updateDateFields = require('./parse-date')
 const { MongoClient } = require('mongodb')
 
@@ -23,13 +24,15 @@ async function saveMongo(order){
       if(!orderDetails.length) {
         orderDetails = vtexOrderDetails(orderId)
         const parsed = updateDateFields(orderDetails)
-        await orders.insertOne(parsed)
+        const encrypted = encrypt(parsed)
+        await orders.insertOne(encrypted)
       }      
       
       const orderDetailsParsedDate = updateDateFields(orderDetails)
+      const encrypted = encrypt(orderDetailsParsedDate)
       
       const updateDoc = {
-        orderDetailsParsedDate,
+        ...encrypted,
         kibana: false
       }
    
