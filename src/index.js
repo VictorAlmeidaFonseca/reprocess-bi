@@ -1,6 +1,4 @@
 
-const moment = require('moment')
-
 const logs = require('./src/logs')
 const allOrder = require('./src/all-orders')
 const parallel = require('./utils/parallel')
@@ -19,13 +17,12 @@ const run = async () => {
 
      await logs({
         uniquekey: "START LIST!",
-        time: moment().format()
-    })   
+           
+     })   
       
     } catch (error) {
         await logs({
             uniquekey: "PANIC!",
-            time: moment().format(),
             error,
         })        
     }

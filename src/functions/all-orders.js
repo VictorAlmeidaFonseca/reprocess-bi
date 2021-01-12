@@ -12,7 +12,6 @@ async function getOrderDetails(order) {
           uniquekey: orderId, 
           success: true, data: 
           orderDetails, 
-          time: moment().format(), 
       })
       
       return orderDetails

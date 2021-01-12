@@ -37,15 +37,13 @@ async function saveMongo(order){
       
       await log({
         uniquekey,
-        success: true,
-        time: moment().format(),
+        success: true,     
         data: updateOrder
      })
         
     } catch (error) {
       await log({
         uniquekey,
-        time: moment().format(),
         error
     })
     }
