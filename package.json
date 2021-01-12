@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "elasticsearch": "^16.7.2",
     "loadash": "^1.0.0",
     "moment": "^2.29.1",
     "mongodb": "*",
