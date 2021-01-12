@@ -1,0 +1,29 @@
+FROM node:14-alpine
+
+ARG VTEX_TOKEN
+ARG VTEX_KEY
+ARG VTEX_ACCOUNTNAME
+
+ENV ELASTIC_HOST=http://localhost
+ENV ELASTIC_PORT=9200
+ENV NODE_PORT=3001
+
+ENV MONGO_URI=''
+ENV MONGO_DB=''
+ENV MONGO_COLLECTION=''
+ENV START_DATE=''
+ENV END_DATE=''
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 3001
+
+RUN printenv
+
+CMD ["node", "server.js" ]
