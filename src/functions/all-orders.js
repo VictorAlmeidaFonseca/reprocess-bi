@@ -1,8 +1,29 @@
 const vtex = require('../services/vtex-client')
 const log = require('../services/logs')
 
+async function getAllOrders(params){
+    try {
 
-async function getOrderDetails(order) {
+        const allOrders = await vtex.Order.paginateLists(params)
+        await log({
+            uniquekey,
+            success: true,     
+        })
+
+        return allOrders
+    } catch (err) {
+        await log({
+            uniquekey: orderId,
+            success: false,
+            error: err || err.message,
+        })
+    }
+
+}
+
+
+
+async function vtexOrderDetails(order) {
     const { orderId } = order
 
     try {
@@ -17,13 +38,13 @@ async function getOrderDetails(order) {
       
       return orderDetails
       
-    } catch (error) {
+    } catch (err) {
         await log({
             uniquekey: orderId,
             success: false,
-            error,
+            error: err || err.message,
         })
     }
 }
 
-module.exports = getOrderDetails
+module.exports =  { vtexOrderDetails, getAllOrders }

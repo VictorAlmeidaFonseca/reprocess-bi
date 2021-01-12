@@ -1,6 +1,7 @@
+require('dotenv').config()
 
+const { getAllOrders } = require('./functions/all-orders')
 const logs = require('./services/logs')
-const allOrder = require('./functions/all-orders')
 const parallel = require('./utils/parallel')
 const vtexParms = require('./config/vtex-params')
 const saveMongo = require('./functions/save-orders-at-mongo')
@@ -10,21 +11,22 @@ const run = async () => {
     
     await logs({
         uniquekey: "START LIST!",  
-    })           
-        
-     const orders = await allOrder(vtexParms)      
-     await parallel(orders, 100, saveMongo) 
+    })
+    
+    const allOrders = await getAllOrders(vtexParms)
+      await parallel(allOrders, 100, saveMongo) 
 
      await logs({
         uniquekey: "START LIST!",
            
      })   
       
-    } catch (error) {
-        await logs({
-            uniquekey: "PANIC!",
-            error,
-        })        
+    } catch (err) {
+        await log({
+            uniquekey: orderId,
+            success: false,
+            error: err || err.message,
+        })     
     }
 }
 

@@ -1,5 +1,5 @@
 const log = require('../services/logs')
-const vtexOrderDetails = require('./all-orders')
+const { vtexOrderDetails } = require('./all-orders')
 const updateDateFields = require('./parse-date')
 const { MongoClient } = require('mongodb')
 
@@ -41,11 +41,11 @@ async function saveMongo(order){
         data: updateOrder
      })
         
-    } catch (error) {
+    } catch (err) {
       await log({
-        uniquekey,
+        uniquekey: orderId,
         success: false,
-        error
+        error: err || err.message,
     })
     }
 }
