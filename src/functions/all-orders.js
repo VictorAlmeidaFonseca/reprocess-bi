@@ -22,7 +22,6 @@ async function getAllOrders(params){
 }
 
 
-
 async function vtexOrderDetails(order) {
     const { orderId } = order
 
