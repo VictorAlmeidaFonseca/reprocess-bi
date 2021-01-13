@@ -23,7 +23,7 @@ const run = async () => {
       
     } catch (err) {
         await logs({
-            uniquekey: orderId,
+            uniquekey: 'START LIST!',
             success: false,
             error: err || err.message,
         })     
