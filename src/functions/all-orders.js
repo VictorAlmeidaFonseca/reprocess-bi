@@ -12,8 +12,8 @@ async function getAllOrders(params){
 
         return allOrders
     } catch (err) {
-        await log({
-            uniquekey: orderId,
+         await log({
+            uniquekey: 'all orders',
             success: false,
             error: err || err.message,
         })
