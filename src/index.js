@@ -1,4 +1,3 @@
-require('dotenv').config()
 
 const { getAllOrders } = require('./functions/all-orders')
 const logs = require('./services/logs')

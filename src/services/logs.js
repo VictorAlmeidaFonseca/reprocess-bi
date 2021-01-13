@@ -6,7 +6,7 @@ module.exports = async (log) => {
     const body =  { ...log, time }  
 
     try {        
-        await axios.post(`http://locahost:3001/${logs}`, body)
+        await axios.post(`http://localhost:3001/bi`, body)
 
     } catch (error) {
        console.log(error)

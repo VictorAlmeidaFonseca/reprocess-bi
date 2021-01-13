@@ -5,6 +5,7 @@ async function getAllOrders(params){
     try {
 
         const allOrders = await vtex.Order.paginateLists(params)
+    
         await log({
             uniquekey,
             success: true,     
