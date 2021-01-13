@@ -22,7 +22,7 @@ const run = async () => {
      })   
       
     } catch (err) {
-        await log({
+        await logs({
             uniquekey: orderId,
             success: false,
             error: err || err.message,
